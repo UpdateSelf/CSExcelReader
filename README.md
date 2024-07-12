@@ -98,8 +98,11 @@ NES:不导出脚本，用于类型定义的扩展
 
 #### TS
 根据Tags选择不同的值 示例格式：
+
 #TS 1, S(2)  如果定义了S这个Tag值就为2， 否则值就为1.
+
 #TS 1, S|C(2)  如果定义了S或者C两个其中一个Tag值就为2， 否则值就为1.
+
 #TS 1, S&C(2)  如果同时定义了S与C两Tag值就为2， 否则值就为1.
 
 #### AE
@@ -112,32 +115,39 @@ NES:不导出脚本，用于类型定义的扩展
 
 #### R
 通过横表的行数引用。 示例格式：
+
 #R GameLevels 0  引用名为GameLevels的DB的第1行数据
 
 #### RS
 通过横表的行数引用多个. 示例格式：
+
 #RS GameLevels 0 1 引用名为GameLevels的DB的第1行与第2行数据
 #RS GameLevels 0 3-9 引用名为GameLevels的DB的第1行与第4行到第10行的数据，返回一个数组.
 
 #### RF
 引用竖表的字段. 示例格式：
+
 #RF PlayerInfo Name 引用名为PlayerInfo的DB的Name字段
 
 #### RK
 通过横表的Key引用. 示例格式：
+
 #RK GameLevels Id 1 引用名为GameLevels的DB中Id等于1的那一行.
 
 #### RKS
 通过横表的Key引用多个. 示例格式：
+
 #RKS GameLevels Id 1 2 引用名为GameLevels的DB中Id等于1与2的那两行.
 
 #### RG
 通过横表的Key引用多个组. 示例格式：
+
 #RG GameLevels Name aa  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa的那一组
 #RG GameLevels Name aa bb  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa与bb的两组的合集
 
 #### RB
 引用整个数据块. 示例格式：
+
 #RB GameLevels  引用名为GameLevels的DB中所有行, GameLevels为横表.
 #RB PlayerInfo  引用名为PlayerInfo的DB的值, PlayerInfo为竖表.
 
