@@ -1,5 +1,5 @@
 # CSExcelReader
-Excel 配置文件转档工具,支持多种引用
+支持多种引用的Excel配置文件转档工具
 
 ## 设计理念
 在Sheet的基础上抽象出来DataBlock概念，通常表的最小单位为Sheet, 在CSExcelReader中最小单位是DataBlock, 所以理论上是可以在一张Sheet上完成所有的配置,但不推荐这样做.
