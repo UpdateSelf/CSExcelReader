@@ -19,7 +19,7 @@ Excel 配置文件转档工具,支持多种引用
 ![example](https://github.com/UpdateSelf/CSExcelReader/blob/main/Pic/example.png)
 
       DataBlockManager.I.Init(name => Resources.Load<TextAsset>($"GameConfigs/{name}").bytes);
-        Debug.Log(PlayerInfos.V.PlayerItem.Name);
+      Debug.Log(PlayerInfos.V.PlayerItem.Name);
 
 ## 使用说明
 
