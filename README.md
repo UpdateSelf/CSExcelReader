@@ -3,32 +3,48 @@ Excel 配置文件转档工具,支持多种引用
 
 ## 设计理念
 在Sheet的基础上抽象出来DataBlock概念，通常表的最小单位为Sheet, 在CSExcelReader中最小单位是DataBlock, 所以理论上是可以在一张Sheet上完成所有的配置,但不推荐这样做.
+
 一个DataBlock由Name与Scope两个字段确定唯一性，所以一个DataBlock也可以分散在多个Sheet中或者多个Excel文件中，只要保证每个DataBlock分片的Name，Scope，类型，结构体一致即可(类型与结构体只需在其中一个指定).
-DataBlock合并规则：由Co属性指定合并顺序，所有的DataBlock的字段会合并到同一个结构体上，竖表排后面DataBlock的字段会覆盖前面相同名字的字段.
+
+DataBlock合并规则：由Co属性指定合并顺序，所有的DataBlock的结构字段会合并到同一个结构体上（竖表：排在后面DataBlock的字段会覆盖前面相同名字的字段）.
+
 既然DataBlock唯一性已经确定了，那引用自然就好办了，只需要为引用指令指定DataBlock就可以了.
+
+通过引用与竖表配合很容易的配置出类似json那种复杂，且多层嵌套的配置.
+
+最后通过合理的设计别名表，可以让指令更加简洁直观易维护.
 
 ## Features:
 1.支持多种数据表：横表，竖表，结构定义表，枚举定义表，别名定义表.
 
 2.支持多种引用：引用横表的一行，引用竖表的某个字段，引用整个DataBlock.
 
-3.支持多种基础类型：bool，byte，short，int，long，float，double，decimal，string，date，span。
+3.支持多种基础类型：bool，byte，short，int，long，float，double，decimal，string，date，span.
 
 4.支持大量的命令，满足项目不同的需求.
 
-5.一键转档与代码生成，使用简单.
+5.一键转档与代码生成，使用简单. 每个DataBlock会根据名字生成一个单例类。
+
+6.支持Tag定义，多种环境（开发，测试，发布）一键切换，前后资源代码分开导出（有些字段只能在服务器使用）.
 
 ## 使用示例
 ![example](https://github.com/UpdateSelf/CSExcelReader/blob/main/Pic/example.png)
 
-``` c# 
+``` c#
+//初始化
 DataBlockManager.I.Init(name => Resources.Load<TextAsset>($"GameConfigs/{name}").bytes);
+//读取名字为PlayerInfos的DataBlock的PlayerItem字段的Name值
 Debug.Log(PlayerInfos.V.PlayerItem.Name);
 ```
 
 ## 使用说明
+1.在Resources文件夹下创建CSExcelReader的配置文件.
 
-### 命令列表
+2.填写CSExcelReader配置文件中相应的字段：资源导出路径，代码导出路径， Excel文件夹（可指定多个）.
+
+3.执行Tools/CSExcelReader/xxxxxx 命令.
+
+### 指令列表
 #### B
 定义一个DataBlock，每个DataBlock必须以这个命令开始。示例格式：#B Na:GameConfigs, Sc:GameConfig.Test
 ##### 参数
