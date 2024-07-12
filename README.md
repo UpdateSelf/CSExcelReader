@@ -82,22 +82,25 @@ NES:不导出脚本，用于类型定义的扩展
 （字段名，引用类型，引用目标）
 
 #### FTS
-设置字段的Tag ，定义是否导出
+设置字段的Tag ，定义是否导出. 示例格式：#FTS Name:S,C Age:S
 
 #### FBI
-设置需要建立索引的字段
+设置需要建立索引的字段. 通过RK或则RKS引用的目标必须要有此值. 示例格式：#FBI Name,Age
 
 #### FBG
-设置需要建立分组的字段
+设置需要建立分组的字段. 通过RG引用的目标必须要有此值. 示例格式：#FBG Name,Age
 
 #### FBR
-设置需要建立范围引用的字段
+设置需要建立范围引用的字段. 通过RR引用的目标必须要有此值. 示例格式：#FBR Name,Age
 
 #### CF
-字段的子字段， 用于字段明定义的格子
+字段的子字段， 用于字段明字定义的格子. 示例格式：#CF Name,Age
 
 #### TS
-根据Tags选择不同的值 
+根据Tags选择不同的值 示例格式：
+#TS 1, S(2)  如果定义了S这个Tag值就为2， 否则值就为1.
+#TS 1, S|C(2)  如果定义了S或者C两个其中一个Tag值就为2， 否则值就为1.
+#TS 1, S&C(2)  如果同时定义了S与C两Tag值就为2， 否则值就为1.
 
 #### AE
 数组结束命令,用于有字符串的数组，一般情况下最后一个格子为空就代表数组结束
@@ -108,25 +111,37 @@ NES:不导出脚本，用于类型定义的扩展
 ### 引用命令列表
 
 #### R
-通过横表的行数应用
+通过横表的行数引用。 示例格式：
+#R GameLevels 0  引用名为GameLevels的DB的第1行数据
 
 #### RS
-通过横表的行数应用多个
+通过横表的行数引用多个. 示例格式：
+#RS GameLevels 0 1 引用名为GameLevels的DB的第1行与第2行数据
+#RS GameLevels 0 3-9 引用名为GameLevels的DB的第1行与第4行到第10行的数据，返回一个数组.
 
 #### RF
-引用竖表的字段
+引用竖表的字段. 示例格式：
+#RF PlayerInfo Name 引用名为PlayerInfo的DB的Name字段
 
 #### RK
-通过横表的Key引用
+通过横表的Key引用. 示例格式：
+#RK GameLevels Id 1 引用名为GameLevels的DB中Id等于1的那一行.
 
 #### RKS
-通过横表的Key引用多个
+通过横表的Key引用多个. 示例格式：
+#RKS GameLevels Id 1 2 引用名为GameLevels的DB中Id等于1与2的那两行.
 
 #### RG
-通过横表的Key引用多个组
+通过横表的Key引用多个组. 示例格式：
+#RG GameLevels Name aa  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa的那一组
+#RG GameLevels Name aa bb  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa与bb的两组的合集
 
 #### RB
-引用整个数据块
+引用整个数据块. 示例格式：
+#RB GameLevels  引用名为GameLevels的DB中所有行, GameLevels为横表.
+#RB PlayerInfo  引用名为PlayerInfo的DB的值, PlayerInfo为竖表.
 
 #### RR
-引用一个或则多个范围
+引用一个或则多个范围. 示例格式：
+#RKS GameLevels Level 3-9  引用名为GameLevels的DB中Level值介于3到9的所有行.
+
