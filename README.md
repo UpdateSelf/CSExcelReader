@@ -133,17 +133,20 @@ NES:不导出脚本，用于类型定义的扩展
 通过横表的Key引用. 示例格式：
 
 #RK GameLevels Id 1 引用名为GameLevels的DB中Id等于1的那一行.
+#RK GameLevels Name (Game 1) 引用名为GameLevels的DB中Name等于 Game 1 的那一行.
 
 #### RKS
 通过横表的Key引用多个. 示例格式：
 
 #RKS GameLevels Id 1 2 引用名为GameLevels的DB中Id等于1与2的那两行.
+#RKS GameLevels Name AA (Game 1) 引用名为GameLevels的DB中Name等于 AA 与 Game 1 的两行
 
 #### RG
 通过横表的Key引用多个组. 示例格式：
 
 #RG GameLevels Name aa  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa的那一组
 #RG GameLevels Name aa bb  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa与bb的两组的合集
+#RG GameLevels Name aa (bb c)  将名为GameLevels的DB中行通过Name字段分组后，引用Name为aa与bb c的两组的合集
 
 #### RB
 引用整个数据块. 示例格式：
