@@ -87,6 +87,7 @@ namespace Player.Test {
        public Game.Test.GameLevel[] GameLevel;
        public Commom.Structs.ToolItem[] ToolItems;
        public Commom.Structs.PlayerItem PlayerItem;
+       public int[][] Bonus;
          public override T GetValue<T>(string name)
         {
             if (valueGeters.TryGetValue(name, out object geter)) 
@@ -103,6 +104,7 @@ namespace Player.Test {
          valueGeters.Add("GameLevel", (Func<PlayerInfos_DS,Game.Test.GameLevel[]>)((a) => a.GameLevel));
          valueGeters.Add("ToolItems", (Func<PlayerInfos_DS,Commom.Structs.ToolItem[]>)((a) => a.ToolItems));
          valueGeters.Add("PlayerItem", (Func<PlayerInfos_DS,Commom.Structs.PlayerItem>)((a) => a.PlayerItem));
+         valueGeters.Add("Bonus", (Func<PlayerInfos_DS,int[][]>)((a) => a.Bonus));
       }
    }
 }
